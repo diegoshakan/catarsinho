@@ -7,7 +7,7 @@
   <%= link_to "Entrar", new_user_session_path %>
 <% end %>
 
-<h1>My Projects - <%= current_user.email %></h1>
+<h1>My Projects <%= current_user.email if user_signed_in? %></h1>
 
 <table>
   <thead>

@@ -15,11 +15,11 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th><%= sort_link(@q, :title) %></th>
       <th>Description</th>
-      <th>Goal</th>
+      <th><%= sort_link(@q, :goal) %></th>
       <th>Date Start</th>
-      <th>Endline</th>
+      <th><%= sort_link(@q, :endline) %></th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -36,8 +36,8 @@
         <td><%= project.user.email %></td>
         <td><%= link_to 'Show', project %></td>
         <% if project.user_id == current_user %>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

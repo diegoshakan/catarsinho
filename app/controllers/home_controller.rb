@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @projects = Project.all
+    @q = Project.search(params[:q])
+    @projects = @q.result(distinct: true)
   end
 end
