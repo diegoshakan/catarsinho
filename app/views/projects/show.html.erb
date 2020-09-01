@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @project.goal %>
+</p>
+
+<p>
+  <strong>Start_date:</strong>
+  <%= @project.start_date %>
+</p>
+
+<p>
+  <strong>Endline:</strong>
+  <%= @project.endline %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user.email %>
+</p>
+
+<% if current_user %>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<% end %>
+<%= link_to 'Back', projects_path %>
