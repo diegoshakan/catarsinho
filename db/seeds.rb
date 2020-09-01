@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create(email: 'user@example.com', password: "changeme", password_confirmation: "changeme")
-project = Project.create(title: 'Projeto Piloto', description: "Projeto para minha formação na aeronáutica", goal: 500.00, endline: "2020-02-02", user: user)
+# project = Project.create(title: 'Projeto Piloto', description: "Projeto para minha formação na aeronáutica", goal: 500.00, endline: Date.current + 1, user: user)

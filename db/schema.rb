@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_005951) do
     t.string "title"
     t.text "description"
     t.float "goal"
+    t.date "start_date"
     t.date "endline"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
