@@ -1,4 +1,4 @@
-<%= form_with(model: project, local: true) do |form| %>
+<%= simple_form_for @project do |form| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.input :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.input :description, as: :text %>
   </div>
 
   <div class="field">
-    <%= form.label :goal %>
-    <%= form.text_field :goal %>
+    <%= form.input :goal, as: :float %>
   </div>
 
   <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
+    <%= form.input :start_date, as: :date %>
+  </div>
+
+  <div class="field">
+    <%= form.input :image, as: :file, multiple: true, direct_upload: true %>
   </div>
 
   <div class="actions">
