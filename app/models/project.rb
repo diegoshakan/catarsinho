@@ -10,6 +10,10 @@ class Project < ApplicationRecord
 
   validate :limit_goal, :limit_start_date
 
+  def amount_per_cent
+    (100 * self.amount_collected) / self.goal
+  end
+
   private
     def limit_goal
       if (self.goal < 0 || self.goal > 500)

@@ -9,7 +9,7 @@
     <% @project.donations.each do |pr| %>
     <tr>
       <td> <%= pr.user.try(:email) %> </td>
-      <td> <%= pr.value %> </td>
+      <td> <%= pr.value_donation %> </td>
     </tr>
   </tbody>
   <% end %>
