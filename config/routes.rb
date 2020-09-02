@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'donations/create'
   root to: "home#index"
   resources :projects
   devise_for :users
