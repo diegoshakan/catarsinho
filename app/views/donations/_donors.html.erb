@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th> Donors </th>
+      <th> Value </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project.donations.each do |pr| %>
+    <tr>
+      <td> <%= pr.user.try(:email) %> </td>
+      <td> <%= pr.value_donation %> </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
