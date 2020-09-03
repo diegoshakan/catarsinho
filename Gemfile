@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'simple_form'
 gem 'devise'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
