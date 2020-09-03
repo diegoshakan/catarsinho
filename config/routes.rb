@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'my_projects/index'
   root to: "projects#index"
 
   devise_for :users
