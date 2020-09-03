@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Home", home_index_path %> |
 <% if user_signed_in? %>
   <%= link_to "Sair", destroy_user_session_path, method: :delete %>
 <% else %>
