@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :destroy]
   before_action :authenticate_user!, except: %i[show]
 
   # GET /projects
@@ -20,6 +20,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    begin
+      @project = Project.where(user: current_user).find(params[:id])
+    rescue Exception
+      redirect_to projects_path, notice: 'Esta tarefa não te pertencee'
+    end
   end
 
   # POST /projects

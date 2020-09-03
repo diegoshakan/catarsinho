@@ -41,7 +41,7 @@
 
 <p>
   <strong>Currently:</strong>
-  <%= @project.amount_per_cent %>%
+  <%= @project.amount_per_cent if @project.amount_collected? %>%
 </p>
 
 <% if @project.user == current_user %>
