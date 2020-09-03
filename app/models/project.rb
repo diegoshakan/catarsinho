@@ -2,11 +2,17 @@ class Project < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  has_many :donations, dependent: :destroy
+
   validates :goal, :start_date, presence: true
   validates :title, length: { maximum: 64 }, presence: true
   validates :description, length: { maximum: 512 }, presence: true
 
   validate :limit_goal, :limit_start_date
+
+  def amount_per_cent
+    (100 * self.amount_collected) / self.goal
+  end
 
   private
     def limit_goal

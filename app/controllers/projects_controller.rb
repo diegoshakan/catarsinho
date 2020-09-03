@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :destroy]
   before_action :authenticate_user!, except: %i[index show]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.where(user_id: current_user)
+    @projects = Project.all
   end
 
   # GET /projects/1
@@ -20,6 +20,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    begin
+      @project = Project.where(user: current_user).find(params[:id])
+    rescue Exception
+      redirect_to projects_path, notice: 'Esta tarefa não te pertencee'
+    end
   end
 
   # POST /projects
@@ -71,6 +76,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:title, :description, :goal, :start_date, :endline, :user_id, :image)
+      params.require(:project).permit(:title, :description, :goal, :start_date, :endline, :user_id, :image, :amount_collected, donations_attributes: [:project_id, :user_id, :value_donation])
     end
 end

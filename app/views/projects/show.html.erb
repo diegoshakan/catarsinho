@@ -7,7 +7,7 @@
 <p>
   <strong>Title:</strong>
   <%= @project.title %>
-</>
+</p>
 
 <p>
   <strong>Description:</strong>
@@ -34,8 +34,22 @@
   <%= @project.user.email %>
 </p>
 
+<p>
+  <strong>Amount Collected:</strong>
+  <%= @project.amount_collected %>
+</p>
+
+<p>
+  <strong>Currently:</strong>
+  <%= @project.amount_per_cent if @project.amount_collected? %>%
+</p>
+
 <% if @project.user == current_user %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
   <%= link_to 'Meus Projetos', projects_path %> |
 <% end %>
-<%= link_to 'Home', home_index_path %>
+
+
+<%= render 'donations/form' %>
+
+<%= render 'donations/donors' %>

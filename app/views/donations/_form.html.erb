@@ -1,0 +1,15 @@
+<h2>Donations</h2>
+
+<%= simple_form_for ([@project, @project.donations.build]) do |form| %>
+  <div class="field">
+    <%= form.input :value_donation %>
+  </div>
+
+  <% if user_signed_in?%>
+    <div class="actions">
+      <%= form.button :submit %>
+    </div>
+  <% else %>
+    <%= link_to "Doar", new_user_session_path %>
+  <% end %>
+<% end %>
