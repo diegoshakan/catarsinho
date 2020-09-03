@@ -8,7 +8,7 @@ class Project < ApplicationRecord
   validates :title, length: { maximum: 64 }, presence: true
   validates :description, length: { maximum: 512 }, presence: true
 
-  validate :limit_goal, :limit_start_date, :date_to_endline
+  # validate :limit_goal, :limit_start_date, :date_to_endline
 
   def amount_per_cent
     (100 * self.amount_collected) / self.goal
@@ -31,9 +31,5 @@ class Project < ApplicationRecord
       if (self.endline < Date.current || self.endline >= (Date.current + 30))
         errors.add(:endline, "Precisa encerrar amanhã ou em até 30 dias")
       end
-    end
-
-    before_save do
-      self.endline = self.start_date + 30
     end
 end
