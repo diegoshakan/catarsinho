@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :destroy]
-  before_action :authenticate_user!, except: %i[show]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.where(user_id: current_user)
+    @projects = Project.all
   end
 
   # GET /projects/1

@@ -6,7 +6,7 @@
   <%= link_to "Entrar", new_user_session_path %>
 <% end %>
 
-<h1>My Projects - <%= current_user.email %></h1>
+<h1>All Projects </h1>
 
 <table>
   <thead>
@@ -31,9 +31,9 @@
         <td><%= project.endline %></td>
         <td><%= project.user.email %></td>
         <td><%= link_to 'Show', project %></td>
-        <% if current_user %>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if project.user == current_user %>
+          <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
