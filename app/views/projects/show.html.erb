@@ -36,17 +36,18 @@
 
 <p>
   <strong>Amount Collected:</strong>
-  <%= @project.amount_collected %>
+  R$ <%= @project.amount_collected %>
 </p>
 
 <p>
   <strong>Currently:</strong>
-  <%= @project.amount_per_cent if @project.amount_collected? %>%
+  <%= "#{@project.amount_per_cent.round(2)}%" if @project.amount_collected? %>
 </p>
 
+<%= link_to 'Home', projects_path %>
 <% if @project.user == current_user %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
-  <%= link_to 'Meus Projetos', projects_path %> |
+  <%= link_to 'Meus Projetos', my_projects_index_path %>
 <% end %>
 
 

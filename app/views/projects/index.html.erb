@@ -9,6 +9,8 @@
 
 <h1>All Projects </h1>
 
+<% if @projects.size > 0 %>
+
 <%= search_form_for @q do |f| %>
   <%= f.label :title_cont %>
   <%= f.search_field :title_cont %>
@@ -47,6 +49,12 @@
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+
+  <h3> Não há projetos ainda!</h3>
+
+<% end %>
 
 <br>
 
