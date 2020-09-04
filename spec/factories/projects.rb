@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :project do
     title { "MyString" }
-    description { "MyText" }
-    goal { 1.5 }
-    endline { "2020-08-30" }
-    user { nil }
+    description { "MyTextMyTextMyTextMyText MyTextMyText MyTextMyText" }
+    goal { 500 }
+    start_date { Date.current }
+    endline { Date.current + 15 }
+    # image { file_blob }
+    user_id { user }
   end
 end

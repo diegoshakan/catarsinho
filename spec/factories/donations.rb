@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :donation do
-    user { nil }
-    project { nil }
-    value { 1.5 }
+    user { 1 }
+    project { 1 }
+    value { 10.5 }
   end
 end
