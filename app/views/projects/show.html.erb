@@ -14,7 +14,7 @@
               <cite> Número de apoiadores: </cite> <%= @project.donations.size %> 
             </div>
           </div>
-          <h5 class="card-title"> <%= @project.title %> </h5> 
+          <h5 class="card-title"> <%= @project.title %> - <%= "Por: #{@project.user.username}" %> </h5> 
           <p class="card-text"> <%= @project.description %> </p>
           <h3 class="card-title text-center"> <%= "Nossa meta: R$ #{@project.goal}" %> </h3> 
           <div>
