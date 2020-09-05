@@ -23,7 +23,7 @@
         <div class="card-body">
           <h5 class="cart-title"> <%= project.title %> </h5>
           <p>Por: <cite> <%= project.user.username %> </cite> </p>
-          <p class="card-text"> <%= project.description.truncate_words(8) %> </p>
+          <p class="card-text"> <%= project.description.truncate_words(6) %> </p>
           <div>
             <div class="progress">
               <div class="progress-bar progress-bar bg-info" role="progressbar"
