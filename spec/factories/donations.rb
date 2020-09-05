@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :donation do
-    user { 1 }
-    project { 1 }
-    value { 10.5 }
+    user 
+    project 
+    value_donation { rand(10..100) }
   end
 end

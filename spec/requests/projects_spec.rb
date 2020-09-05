@@ -13,11 +13,10 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/projects", type: :request do
-  # Project. As you add validations to Project, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let!(:project) { create(:project) }
+  let!(:user) { create(:user) }
+
+  let(:valid_attributes) { build(:project).attributes }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
@@ -25,7 +24,7 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Project.create! valid_attributes
+      project
       get projects_url
       expect(response).to be_successful
     end
@@ -33,7 +32,7 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      project = Project.create! valid_attributes
+      project
       get project_url(project)
       expect(response).to be_successful
     end
@@ -41,6 +40,7 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
+      sign_in user
       get new_project_url
       expect(response).to be_successful
     end
@@ -48,7 +48,8 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      project = Project.create! valid_attributes
+      sign_in project.user
+      project
       get edit_project_url(project)
       expect(response).to be_successful
     end
@@ -56,6 +57,7 @@ RSpec.describe "/projects", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
+      sign_in user
       it "creates a new Project" do
         expect {
           post projects_url, params: { project: valid_attributes }

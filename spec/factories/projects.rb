@@ -6,6 +6,9 @@ FactoryBot.define do
     start_date { Date.current }
     endline { Date.current + 15 }
     # image { file_blob }
-    user_id { user }
+    # image { "app/assets/images/noobcode.png" }
+    # image { definition_file_paths.(Rails.root.join('app', 'assets', 'images', 'noobcode.png')) }
+    image { Rack::Test::UploadedFile.new('spec/fixtures/noobcode.png', 'image/png') }
+    user
   end
 end
