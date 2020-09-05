@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-info bg-light">
+  <a href="<%= projects_path %>" class="navbar-brand ml-2">Catarsinho</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <ul class="navbar-nav mr-2">
+      <li class="nav-item mr-2">
+        <%= link_to 'Crie um projeto', new_project_path, class:"nav-link btn btn-outline-primary" %>
+      </li>
+      <% if user_signed_in? %>
+      <li class="nav-item mr-2">
+        <%= link_to "Meus projetos", my_projects_index_path, class:"nav-link btn btn-outline-primary text-grey" %>
+      </li>
+        <li class="nav-item mr-2">
+          <%= link_to "Sair", destroy_user_session_path, method: :delete, class:"nav-link btn btn-light text-grey" %>
+        </li>
+      <% else %>   
+        <li class="nav-item mr-2">
+          <%= link_to 'Entrar', new_user_session_path, class:"nav-link btn btn-outline-success" %>
+        </li>   
+      <% end %>
+    </ul>
+  </div>
+</nav>
+

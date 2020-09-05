@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @q = Project.search(params[:q])
+    @q = Project.ransack(params[:q])
     @projects = @q.result(distinct: true)
   end
 
@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
     begin
       @project = Project.where(user: current_user).find(params[:id])
     rescue Exception
-      redirect_to projects_path, notice: 'Esta tarefa não te pertencee'
+      redirect_to projects_path, notice: 'Esta tarefa não te pertence'
     end
   end
 
