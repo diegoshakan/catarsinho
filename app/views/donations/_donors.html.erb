@@ -8,7 +8,7 @@
   <tbody>
     <% @project.donations.each do |pr| %>
       <tr>
-        <td> <%= pr.user.try(:email) %> </td>
+        <td> <%= pr.user.try(:username) %> </td>
         <td> <%= "R$ #{pr.value_donation}" if pr.value_donation? %> </td>
       </tr>
     <% end %>
