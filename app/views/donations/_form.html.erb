@@ -1,15 +1,21 @@
-<h2>Donations</h2>
+<h2>Contribuição:</h2>
+
+<div class="container">
 
 <%= simple_form_for ([@project, @project.donations.build]) do |form| %>
-  <div class="field">
-    <%= form.input :value_donation %>
+  <div class="row">
+    <% if user_signed_in?%>
+      <div class="col-6">
+        <%= form.input :value_donation, label: false, placeholder: "Valor" %>
+      </div>
+      <div class="col-6">
+        <%= form.button :submit, "Doar", class: "btn btn-success btn-block" %>
+      </div>
+    <% else %>
+      <div class="col-12">
+        <%= link_to "Doar", new_user_session_path, class: "btn btn-success btn-block" %>
+      </div>
+    <% end %>
   </div>
-
-  <% if user_signed_in?%>
-    <div class="actions">
-      <%= form.button :submit %>
-    </div>
-  <% else %>
-    <%= link_to "Doar", new_user_session_path %>
-  <% end %>
 <% end %>
+</div>

@@ -1,16 +1,16 @@
-<table>
-  <thead>
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
     <tr>
-      <th> Donors </th>
-      <th> Value </th>
+      <th> Doador(es) </th>
+      <th> Valor </th>
     </tr>
   </thead>
   <tbody>
     <% @project.donations.each do |pr| %>
-    <tr>
-      <td> <%= pr.user.try(:email) %> </td>
-      <td> <%= pr.value_donation %> </td>
-    </tr>
+      <tr>
+        <td> <%= pr.user.try(:email) %> </td>
+        <td> <%= "R$ #{pr.value_donation}" if pr.value_donation? %> </td>
+      </tr>
+    <% end %>
   </tbody>
-  <% end %>
 </table>

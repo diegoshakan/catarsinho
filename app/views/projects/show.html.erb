@@ -1,57 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<div style="width: 20%; height: auto;">
-  <%= image_tag(@project.image, style: "width: 100%") %>
+<div class="container">
+  <div class="card mb-3 mx-auto" style="max-width: 80%; max-height: 100%">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <%= image_tag(@project.image, class: "card-img", style: "width: 100%; height: 100%") %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h1 class="card-title"> <%= "R$ #{@project.amount_collected}" %> </h1>
+              <cite> Número de apoiadores: </cite> <%= @project.donations.size %> 
+            </div>
+          </div>
+          <h5 class="card-title"> <%= @project.title %> </h5> 
+          <p class="card-text"> <%= @project.description %> </p>
+          <h3 class="card-title text-center"> <%= "Nossa meta: R$ #{@project.goal}" %> </h3> 
+          <div>
+            <div class="progress">
+              <div class="progress-bar progress-bar bg-info" role="progressbar" style="width: <%= "#{@project.amount_per_cent.round(2)}%" if @project.amount_collected? %>" aria-valuenow="<%= @project.amount_collected %>" aria-valuemin="0" aria-valuemax="<%= @project.goal %>"><%= "#{@project.amount_per_cent.round(2)}%" if @project.amount_collected? %></div>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col">
+              <%= "#{@project.amount_per_cent.round(2)}%" if @project.amount_collected? %> 
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+              <%= @project.endline.strftime("%d/%m/%Y") %> 
+              <figcaption><cite> Encerramento </cite></figcaption>
+            </div>
+            <%= render 'donations/form' %>
+            <% if @project.user == current_user %>
+              <div class="row mt-3">
+                <div class="col-4">
+                  <%= link_to 'Editar', edit_project_path(@project), class: "btn btn-warning btn-block" %>
+                </div>
+                <div class="col-4">
+                  <%= link_to 'Apagar', projects_path(@project), method: :delete, data: { confirm: "Tem certeza que quer apagar este projeto?" }, class: "btn btn-danger btn-block" %></td>
+                </div>
+              </div>
+            <% end %>  
+          </div>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'donations/donors' %>
 </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Goal:</strong>
-  <%= @project.goal %>
-</p>
-
-<p>
-  <strong>Start_date:</strong>
-  <%= @project.start_date %>
-</p>
-
-<p>
-  <strong>Endline:</strong>
-  <%= @project.endline %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project.user.email %>
-</p>
-
-<p>
-  <strong>Amount Collected:</strong>
-  R$ <%= @project.amount_collected %>
-</p>
-
-<p>
-  <strong>Currently:</strong>
-  <%= "#{@project.amount_per_cent.round(2)}%" if @project.amount_collected? %>
-</p>
-
-<%= link_to 'Home', projects_path %>
-<% if @project.user == current_user %>
-  | <%= link_to 'Meus Projetos', my_projects_index_path %> |
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-  <%= link_to 'Apagar Projeto', @project, method: :delete, data: { confirm: "Tem certeza que quer apagar este projeto?" } %>
-<% end %>
-
-
-<%= render 'donations/form' %>
-
-<%= render 'donations/donors' %>
