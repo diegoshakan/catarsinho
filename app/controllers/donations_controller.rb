@@ -4,10 +4,16 @@ class DonationsController < ApplicationController
   def create
     @donation = @project.donations.create(donation_params)
     @donation.user_id = current_user.id
-    sum_amount_collected
+    
+    if @donation.value_donation > 0
+      sum_amount_collected
 
-    @donation.save
-    redirect_to project_path(@project), notice: 'Obrigado por contribuir'
+      @donation.save
+      redirect_to project_path(@project), notice: 'Obrigado por sua contribuição'
+    else
+      redirect_to project_path(@project), notice: 'Valor precisa ser maior que R$ 0,00'
+    end
+    
   end
 
   private

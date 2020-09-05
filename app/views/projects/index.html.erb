@@ -3,41 +3,46 @@
 <% if @projects.size > 0 %>
 
 <div class="container">
+  <h2 class="font-italic">Nossos Projetos</h2>
   <%= search_form_for @q, html: {class: 'form-inline mb-4 row'}  do |f| %>
-    <div class="col-6">
-      <%= f.search_field :title_cont, placeholder: "Pesquisar projeto",  class: 'form-control mr-2' %>
-    </div>
-    <div class="col-3">
-      <%= f.submit 'Pesquisar', class: 'btn btn-success btn-block mr-2' %>
-    </div>
-    <div class="col-3">
-      <%= link_to "Limpar Pesquisa", projects_path, class: "btn btn-outline-secondary btn-block text-grey mr-2" %>
-    </div>
+  <div class="col-6">
+    <%= f.search_field :title_cont, placeholder: "Pesquisar projeto",  class: 'form-control mr-2' %>
+  </div>
+  <div class="col-3">
+    <%= f.submit 'Pesquisar', class: 'btn btn-success btn-block mr-2' %>
+  </div>
+  <div class="col-3">
+    <%= link_to "Limpar Pesquisa", projects_path, class: "btn btn-outline-secondary btn-block text-grey mr-2" %>
+  </div>
   <% end %>
   <div class="row row-cols-1 row-cols-md-3">
     <% @projects.each do |project| %>
     <div class="col mb-4">
       <div class="card h-100" style="box-shadow: 3px 1px 13px grey;">
-        <%= image_tag(project.image, class: "card-img-top", style: "max-height: 40%") %>
+        <%= image_tag(project.image, class: "card-img-top", style: "height: 40%") %>
         <div class="card-body">
           <h5 class="cart-title"> <%= project.title %> </h5>
           <p>Por: <cite> <%= project.user.email %> </cite> </p>
-          <p class="card-text"> <%= project.description.truncate_words(8) %> </h5>
+          <p class="card-text"> <%= project.description.truncate_words(8) %> </p>
           <div>
             <div class="progress">
-              <div class="progress-bar progress-bar bg-info" role="progressbar" style="width: <%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %>" aria-valuenow="<%= project.amount_collected %>" aria-valuemin="0" aria-valuemax="<%= project.goal %>"><%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %></div>
+              <div class="progress-bar progress-bar bg-info" role="progressbar"
+                style="width: <%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %>"
+                aria-valuenow="<%= project.amount_collected %>" aria-valuemin="0" aria-valuemax="<%= project.goal %>">
+                <%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %>
+              </div>
             </div>
           </div>
           <div class="row mt-1">
             <div class="col">
-              <%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %> 
+              <%= "#{project.amount_per_cent.round(2)}%" if project.amount_collected? %>
             </div>
             <div class="col">
-              <%= "R$ #{project.amount_collected }" %> 
+              <%= "R$ #{project.amount_collected }" %>
               <figcaption><cite> Recebidos </cite></figcaption>
             </div>
             <div class="col">
-              <%= project.endline.strftime("%d/%m/%Y") %> 
+              <%= project.endline.strftime("%d/%m/%Y") %>
               <figcaption><cite> Encerramento </cite></figcaption>
             </div>
           </div>
@@ -47,7 +52,7 @@
             <div class="card-body">
               <% if project.user == current_user %>
                 <%= link_to 'Editar', edit_project_path(project), class: "btn btn-warning" %>
-                <%= link_to 'Apagar', project, method: :delete, data: { confirm: "Tem certeza que quer apagar este projeto?" }, class: "btn btn-danger" %></td>
+                <%= link_to 'Apagar', project, method: :delete, data: { confirm: "Tem certeza que quer apagar este projeto?" }, class: "btn btn-danger" %>
               <% end %>
               <%= link_to 'Saiba mais', project, class: 'btn btn-primary' %>
             </div>
@@ -61,7 +66,14 @@
 
 <% else %>
 
-  <h3> Não há projetos ainda!</h3>
-  <%= link_to "Limpar Pesquisa", projects_path %>
+
+<div class="row mx-auto">
+  <div class="col-3">
+    <h3> Não há projetos ainda!</h3>
+  </div>
+  <div class="col-3">
+    <%= link_to 'Crie um projeto', new_project_path, class:"nav-link btn btn-outline-primary" %>
+  </div>
+</div>
 
 <% end %>
