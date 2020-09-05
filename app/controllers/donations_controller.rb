@@ -7,7 +7,7 @@ class DonationsController < ApplicationController
     sum_amount_collected
 
     @donation.save
-    redirect_to project_path(@project)
+    redirect_to project_path(@project), notice: 'Obrigado por contribuir'
   end
 
   private
