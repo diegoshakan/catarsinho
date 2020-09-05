@@ -1,41 +1,56 @@
-<%= simple_form_for @project do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<div class="container">
+  <%= simple_form_for @project do |form| %>
+    <% if project.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-        <% project.errors.full_messages.each do |message| %>
+        <ul>
+          <% project.errors.full_messages.each do |message| %>
           <li><%= message %></li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-6">
+          <%= form.input :title, label: "Título", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <%= form.input :description, label: "Descrição", as: :text, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <%= form.input :goal, as: :float, label: "Meta", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <%= form.input :start_date, as: :date, label: "Início" %>
+        </div>
+        <div class="col-6">
+          <%= form.input :endline, as: :date, label: "Encerramento" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-6">
+          <%= form.input :image, as: :file, multiple: true, direct_upload: true, label: "Imagem", class: "form-control-file" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-3">
+          <%= form.submit "Atualizar", class: "btn btn-success btn-block" %>
+        </div>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.input :title %>
-  </div>
-
-  <div class="field">
-    <%= form.input :description, as: :text %>
-  </div>
-
-  <div class="field">
-    <%= form.input :goal, as: :float %>
-  </div>
-
-  <div class="field">
-    <%= form.input :start_date, as: :date %>
-  </div>
-
-  <div class="field">
-    <%= form.input :endline, as: :date %>
-  </div>
-
-  <div class="field">
-    <%= form.input :image, as: :file, multiple: true, direct_upload: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

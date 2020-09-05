@@ -4,6 +4,8 @@ class Project < ApplicationRecord
 
   has_many :donations, dependent: :destroy
 
+  accepts_nested_attributes_for :donations
+
   validates :goal, :start_date, :endline, :image, presence: true
   validates :title, length: { maximum: 64 }, presence: true
   validates :description, length: { maximum: 512 }, presence: true

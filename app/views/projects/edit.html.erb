@@ -2,5 +2,11 @@
 
 <%= render 'form', project: @project %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-3">
+      <%= link_to 'Voltar', @project, class: "btn btn-primary" %>
+      <%= link_to 'Home', projects_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
