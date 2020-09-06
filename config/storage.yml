@@ -11,8 +11,8 @@ amazon:
   service: S3
   access_key_id: ENV['S3_KEY_MY']
   secret_access_key: ENV['S3_SECRET_MY']
-  region: sa-east-1
-  bucket: meu-catarsinho
+  region: ENV['S3_REGION']
+  bucket: ENV['S3_BUCKET']
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
