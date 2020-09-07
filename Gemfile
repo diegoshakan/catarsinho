@@ -8,6 +8,7 @@ gem 'devise'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'bootstrap', '~> 5.0.0.alpha1'
 gem 'jquery-rails'
+gem 'dotenv-rails'
 gem "aws-sdk-s3", require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -43,7 +44,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'simplecov', require: false, group: :test
-  gem 'dotenv-rails'
 end
 
 group :development do
