@@ -26,6 +26,7 @@ Click here to visit: [Catarsinho](https://meu-catarsinho.herokuapp.com/)
 * $ rails db:create db:migrate (if you want two sample users , please run too db:seed)
 * $ bundle install
 * if your sistem ask for Yarn, please type $ yarn install or just $ yarn
+* After all, run $ rails s -b 0.0.0.0
 
 ## Web App
 * You can register an user and submit a project;
