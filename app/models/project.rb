@@ -18,19 +18,17 @@ class Project < ApplicationRecord
 
   private
     def limit_goal
-      if (self.goal < 0 || self.goal > 500)
-        errors.add(:goal, "Meta precisa estar entre 0 e 500")
-      end
+      ::RulesProject::Validations.new(self).unpermitted_goal
     end
 
     def limit_start_date
-      if (self.start_date < Date.current)
+      if (self.start_date < Date.today)
         errors.add(:start_date, "Data não pode ser anterior a hoje")
       end
     end
 
     def date_to_endline
-      if (self.endline < Date.current || self.endline >= (Date.current + 30))
+      if (self.endline < Date.today || self.endline >= (Date.today + 30))
         errors.add(:endline, "Precisa encerrar amanhã ou em até 30 dias")
       end
     end
