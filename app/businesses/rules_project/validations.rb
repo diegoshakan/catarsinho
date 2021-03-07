@@ -12,6 +12,10 @@ class RulesProject::Validations
     error_goal
   end
 
+  def unpermitted_date
+    error_date
+  end
+
   private
 
   def calculate_per_cent
@@ -25,4 +29,14 @@ class RulesProject::Validations
   def error_goal
     @project.errors[:base] << "Meta precisa estar entre 0 e 500" if validate_goal
   end
+
+  def validate_date
+    @project.start_date < Date.today
+  end
+
+  def error_date
+    @project.errors[:base] << "Data não pode ser anterior a hoje" if validate_date
+  end
+
+
 end

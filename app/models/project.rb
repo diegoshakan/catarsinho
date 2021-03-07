@@ -22,9 +22,7 @@ class Project < ApplicationRecord
     end
 
     def limit_start_date
-      if (self.start_date < Date.today)
-        errors.add(:start_date, "Data não pode ser anterior a hoje")
-      end
+      ::RulesProject::Validations.new(self).unpermitted_date
     end
 
     def date_to_endline
