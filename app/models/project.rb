@@ -13,7 +13,7 @@ class Project < ApplicationRecord
   validate :limit_goal, :limit_start_date, :date_to_endline
 
   def amount_per_cent
-    (100 * self.amount_collected) / self.goal
+    ::RulesProject::Validations.new(self).total_per_cent
   end
 
   private
