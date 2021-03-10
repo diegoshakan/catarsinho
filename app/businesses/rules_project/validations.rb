@@ -12,8 +12,12 @@ class RulesProject::Validations
     error_goal
   end
 
-  def unpermitted_date
+  def unpermitted_start_date
     error_date
+  end
+
+  def unpermitted_endline
+    error_endline
   end
 
   private
@@ -30,12 +34,20 @@ class RulesProject::Validations
     @project.errors[:base] << "Meta precisa estar entre 0 e 500" if validate_goal
   end
 
-  def validate_date
+  def validate_start_date
     @project.start_date < Date.today
   end
 
   def error_date
-    @project.errors[:base] << "Data não pode ser anterior a hoje" if validate_date
+    @project.errors[:base] << "Data não pode ser anterior a hoje" if validate_start_date
+  end
+
+  def validate_endline
+    @project.endline <= Date.today || @project.endline >= Date.today + 30
+  end
+
+  def error_endline
+    @project.errors[:base] << "Precisa encerrar amanhã ou em até 30 dias" if validate_endline
   end
 
 

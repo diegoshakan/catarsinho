@@ -22,12 +22,10 @@ class Project < ApplicationRecord
     end
 
     def limit_start_date
-      ::RulesProject::Validations.new(self).unpermitted_date
+      ::RulesProject::Validations.new(self).unpermitted_start_date
     end
 
     def date_to_endline
-      if (self.endline < Date.today || self.endline >= (Date.today + 30))
-        errors.add(:endline, "Precisa encerrar amanhã ou em até 30 dias")
-      end
+      ::RulesProject::Validations.new(self).unpermitted_endline
     end
 end
