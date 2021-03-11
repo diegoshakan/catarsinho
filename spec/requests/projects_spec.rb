@@ -40,7 +40,6 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
-      sign_in user
       get new_project_url
       expect(response).to be_successful
     end
@@ -48,7 +47,6 @@ RSpec.describe "/projects", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      sign_in project.user
       project
       get edit_project_url(project)
       expect(response).to be_successful
@@ -57,7 +55,6 @@ RSpec.describe "/projects", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
-      sign_in user
       it "creates a new Project" do
         expect {
           post projects_url, params: { project: valid_attributes }

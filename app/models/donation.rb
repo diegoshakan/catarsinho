@@ -9,9 +9,7 @@ class Donation < ApplicationRecord
   private
 
     def no_donation_after_endline
-      if (Date.current > self.project.endline)
-        errors.add(:donation, "Projeto encerrado, não é mais possível doar.")
-      end
+      ::RulesDonation::Validations.new(self).denie_donation
     end
     
 end
