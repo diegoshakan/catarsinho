@@ -1,11 +1,16 @@
 class RulesDonation::Validations
-  def initialize(donation, options = {})
+  def initialize(donation = nil, options = {})
     @donation = donation
     @options = options
   end
 
   def denie_donation
     error_donation
+  end
+
+  def sum_collected(project)
+    project.amount_collected += @donation.value_donation
+    project.save
   end
 
   private
