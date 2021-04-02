@@ -7,10 +7,12 @@
   </thead>
   <tbody>
     <% @project.donations.each do |pr| %>
-      <tr>
-        <td> <%= pr.user.try(:username) %> </td>
-        <td> <%= "R$ #{pr.value_donation}" if pr.value_donation? %> </td>
-      </tr>
+      <% unless pr.value_donation.nil?  %>
+        <tr>
+          <td> <%= pr.user.try(:username) %> </td>
+          <td> <%= "R$ #{pr.value_donation}" %> </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

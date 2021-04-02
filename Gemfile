@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
+gem 'dotenv-rails', require: 'dotenv/rails-now', groups: [:development, :test]
 gem 'simple_form'
 gem 'devise'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'bootstrap', '~> 5.0.0.alpha1'
 gem 'jquery-rails'
-gem 'dotenv-rails'
-gem "aws-sdk-s3", require: false
+gem 'cloudinary'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'

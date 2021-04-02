@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  before_action :set_project, only: %i[create]
+  before_action :set_project, only: :create
   after_action :sum_total_collected
   
   def create
