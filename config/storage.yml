@@ -8,6 +8,11 @@ local:
 
 cloudinary:
   service: Cloudinary
+  cloud_name: <%= ENV['CLOUD_NAME'] %>
+  api_key: <%= ENV['API_KEY'] %>
+  api_secret: <%= ENV['API_SECRET'] %>
+  secure: <%= ENV['SECURE'] %>
+  cdn_subdomain: <%= ENV['CDN_SUBDOMAIN'] %>
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 #amazon:
