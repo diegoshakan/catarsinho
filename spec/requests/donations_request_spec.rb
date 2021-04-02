@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Donations", type: :request do
-  let!(:project) { create(:project) }
   let!(:user) { create(:user) }
+  let!(:project) { create(:project, user_id: user.id) }
   let!(:donation) { create(:donation) }
-  
-  let(:valid_attributes) { build(:project).attributes }
 
   describe "POST /create" do
     it "creates a new donation" do
+      @donation_params = {value_donation: 100.0, user_id: user.id, project_id: project.id}
       expect {
-        post project_donations_path, params: { donation: valid_attributes }
+        post project_donations_path, params: { donation: @valid_attributes }
       }.to change(Donation, :count).by(1)
     end
     # it "returns http success" do
